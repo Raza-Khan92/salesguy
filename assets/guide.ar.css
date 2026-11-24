@@ -1,0 +1,39 @@
+/* Right-to-left overrides for the Arabic guide. Loaded after guide.css. */
+html[dir="rtl"] body { font-family: 'Cairo', 'Inter', system-ui, sans-serif; line-height: 1.75; }
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] h4,
+html[dir="rtl"] .venue .num { font-family: 'Cairo', 'Inter', sans-serif; letter-spacing: 0; }
+html[dir="rtl"] h1, html[dir="rtl"] h2 { font-weight: 700; line-height: 1.35; }
+html[dir="rtl"] h3, html[dir="rtl"] h4 { font-weight: 700; }
+/* Arabic letters must stay joined: no letter spacing, no capitals transform */
+html[dir="rtl"] .kicker, html[dir="rtl"] .eyebrow, html[dir="rtl"] .box .label, html[dir="rtl"] th,
+html[dir="rtl"] .cover .internal { letter-spacing: 0; text-transform: none; }
+html[dir="rtl"] .kicker { font-size: 13px; }
+html[dir="rtl"] .box .label { font-size: 12.5px; }
+html[dir="rtl"] th { font-size: 12.5px; }
+
+html[dir="rtl"] ul, html[dir="rtl"] ol { padding-left: 0; padding-right: 22px; }
+html[dir="rtl"] th, html[dir="rtl"] td { text-align: right; }
+html[dir="rtl"] ol.steps { padding-right: 0; }
+html[dir="rtl"] ol.steps > li { padding: 6px 40px 6px 0; }
+html[dir="rtl"] ol.steps > li::before { left: auto; right: 0; }
+html[dir="rtl"] .tpl .cols > div + div { border-left: 0; border-right: 1px solid var(--line); }
+html[dir="rtl"] .tpl .cols > div[lang="en"] { direction: ltr; text-align: left; font-family: 'Inter', sans-serif; }
+
+/* Latin bits inside Arabic text: emails, passwords, links, brand domains */
+.ltr { direction: ltr; unicode-bidi: isolate; font-family: 'Inter', sans-serif; overflow-wrap: anywhere; }
+html[dir="rtl"] a, html[dir="rtl"] td { overflow-wrap: anywhere; }
+html[dir="rtl"] .cover h1 { font-size: 50px; }
+
+@media print {
+  html[dir="rtl"] body { font-size: 10.2pt; }
+  html[dir="rtl"] a.vid .vt { font-size: 8.4pt; line-height: 1.5; }
+}
+@media (max-width: 720px) {
+  html[dir="rtl"] .tpl .cols > div + div { border-right: 0; border-top: 1px solid var(--line); }
+}
+
+/* The cover fills page 1 without stretching into the margins (stretching shifts every RTL page sideways) */
+@page :first { margin: 0; }
+@media print {
+  html[dir="rtl"] .cover { margin: 0; min-height: 0; height: 296mm; overflow: hidden; padding: 22mm 18mm; }
+}
